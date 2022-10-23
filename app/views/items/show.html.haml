@@ -45,9 +45,19 @@
         %td.leftColumn 発送日の目安
         %td.rightColumn= @item.preparation_day.name
     .itemInfoBox__btnBox
-      = link_to "#", class:"favoriteBtn" do
-        = icon "fas", "star" , class: "favoriteIcon"
-        %p.favoriteBtnText お気に入り 1
+      - unless user_signed_in? && @item.user != current_user
+        .favoriteBtn
+          = icon "far", "star" , class: "favoriteIcon"
+          %p.favoriteBtnText いいね！
+          %span.favoriteNumber=@favorite_number
+      - else
+        .favoriteBtn#favoriteBtn
+          - if @exist_favorite
+            = icon "far", "star" , class: "favoriteIcon"
+          - else
+            = icon "fas", "star" , class: "favoriteIcon"
+          %p.favoriteBtnText いいね！
+          %span.favoriteNumber=@favorite_number
       = link_to "#", class: "reportBtn" do
         = icon "fas", "flag", class: "reportIcon"
         %p 不適切な商品の通報

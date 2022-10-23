@@ -15,6 +15,14 @@ class Users::SessionsController < Devise::SessionsController
     @items = current_user.items.where(status_id: 2)
   end
 
+  def favorite_item
+    @favorite_item_list = Favorite.where(user_id: current_user.id).includes(:item)
+    @items = []
+    @favorite_item_list.each do |favorite_item|
+      @items << favorite_item.item
+    end
+  end
+
   def payment_method
     store_location
     @card = CreditCard.where(user_id: current_user.id).first

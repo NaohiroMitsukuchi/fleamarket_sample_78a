@@ -3,7 +3,10 @@
   .Item_box__text_block
     %h3.Item_box__text_block__item_name= item.name
     .Item_box__text_block__price ¥ #{item.price}
-    %dl.Item_box__text_block__favorite
-      %dt.Item_box__text_block__favorite--icon= icon("fas", "star")
-      %dd.Item_box__text_block__favorite--num 111
-
+    - unless item.favorites.length == 0
+      %dl.Item_box__text_block__favorite
+        - if user_signed_in? && Favorite.find_by(user_id: current_user.id, item_id: item.id)
+          %dt.Item_box__text_block__favorite--icon= icon("fas", "star")
+        - else
+          %dt.Item_box__text_block__favorite--icon= icon("far", "star")
+        %dd.Item_box__text_block__favorite--num #{item.favorites.length}

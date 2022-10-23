@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :move_to_root, only: [:new, :edit]
   before_action :correct_user, only: [:destroy, :edit, :update]
-  before_action :set_item, only: [:edit, :update, :show, :destroy, :buy, :pay]
+  before_action :set_item, only: [:edit, :update, :show, :destroy, :buy, :pay, :favorite]
   before_action :set_category, only: [:edit, :update]
 
   def top
@@ -9,9 +9,6 @@ class ItemsController < ApplicationController
   end
 
   def index
-  end
-  
-  def show
   end
 
   def new
@@ -47,6 +44,15 @@ class ItemsController < ApplicationController
     @more_items = category.items.where(status_id: 1).where.not(id: @item.id).order(created_at: :desc).limit(5)
     # 「前の商品」「後ろの商品」表示用のインスタンス
     @items = category.items.where(status_id: 1)
+    @favorite_number = Favorite.where(item_id: @item.id).length
+    # current_userのいいねが存在するかどうか
+    if user_signed_in?
+      @exist_favorite = Favorite.find_by(item_id: @item.id, user_id: current_user.id).blank?
+    end
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def buy
@@ -108,6 +114,16 @@ class ItemsController < ApplicationController
     else
       redirect_to root_path, alert: "エラーが発生しました"
     end
+  end
+
+  def favorite
+    exist_favorite = Favorite.find_by(item_id: @item.id, user_id: current_user.id)
+    if exist_favorite == nil
+      Favorite.create(item_id: @item.id, user_id: current_user.id)
+    else
+      exist_favorite.destroy
+    end
+    @favorite_number = Favorite.where(item_id: @item.id).length
   end
 
   private

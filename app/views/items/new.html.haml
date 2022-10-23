@@ -29,7 +29,7 @@
                   %label
                     = icon("fas", "camera-retro")
                     = file_field_tag :url, name: "item[item_images_attributes][#{@item.item_images.count}][url]", class: 'js-file'
-        - if @item.errors.include?(:item_images)
+        - if @item.errors.any?
           .FormItem__error_message 商品画像をアップロードしてください
       .FormItem.border
         %dl

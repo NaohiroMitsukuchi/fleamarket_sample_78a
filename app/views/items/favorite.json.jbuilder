@@ -1,0 +1,1 @@
+json.favorite_number @favorite_number

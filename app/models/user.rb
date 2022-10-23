@@ -14,6 +14,7 @@ class User < ApplicationRecord
   include JpPrefecture
   jp_prefecture :prefecture_code
   has_many :items, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
   def prefecture_name
     JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)

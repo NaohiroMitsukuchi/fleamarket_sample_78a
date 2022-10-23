@@ -194,6 +194,11 @@
         }
       }
       &__detail {
+        & .caution{
+          font-size: 12px;
+          font-weight: lighter;
+          margin-top: 5px;
+        }
         & input, & select {
           display: block;
           width: 100%;

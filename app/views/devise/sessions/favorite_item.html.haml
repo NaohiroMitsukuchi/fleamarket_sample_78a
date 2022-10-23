@@ -1,0 +1,11 @@
+= render partial: 'items/header'
+
+.MyPage
+  = render partial: 'devise/sessions/side_nav'
+  .MainField
+    %h1 お気に入りの商品
+    .Item_box__Wrap
+      = render partial: 'items/items_list', collection: @items, as: "item"
+
+= render partial: 'items/footer'
+= render partial: 'items/putting_up_btn'

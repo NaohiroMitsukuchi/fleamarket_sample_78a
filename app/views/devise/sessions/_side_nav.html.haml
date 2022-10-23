@@ -12,6 +12,9 @@
     = link_to users_completed_item_path, class: "Nav__content" do
       %li.Nav__content--name 売却済の商品
       = icon('fas', 'angle-double-right')
+    = link_to users_favorite_item_path, class: "Nav__content" do
+      %li.Nav__content--name お気に入り商品
+      = icon('fas', 'angle-double-right')
 
   %h3 設定
   %ul.Nav 

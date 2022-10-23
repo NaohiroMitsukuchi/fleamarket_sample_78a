@@ -293,7 +293,7 @@ header {
     padding-bottom: 25px;
   }
   &__lists {
-    @include flex_box(flex-start, start);
+    @include flex_box(space-around, start);
     flex-wrap: wrap;
     margin: 0 auto;
   }
@@ -320,6 +320,7 @@ header {
     &__item_name{
       overflow: hidden;
       height: 40px;
+      font-weight: 600;
     }
     &__price {
       position: absolute;
@@ -332,15 +333,16 @@ header {
       padding: 5px 5px 5px 10px;
     }
     &__favorite{
-      @include flex_box(space-around, center);
-      @include h_w(20px, 25%);
+      @include flex_box(start, center);
+      @include h_w(20px, auto);
       position: absolute;
-      right: 5px;
+      right: 10px;
       bottom: 10px;
       background:#fff;
-      color: #222;
+      color: $LightBlue;
       &--icon{
         font-size: 13px;
+        margin-right: 5px;
       }
     }
   }
@@ -684,18 +686,22 @@ footer {
     padding: 20px 0;
     @include flex_box(space-between, center);  
     & .favoriteBtn {
+      user-select: none;
       padding: 8px 10px;
       border: 1px solid #ffa500;
-      border-radius: 20px;
+      border-radius: 10px;
       @include flex_box(flex-start, center);
-      text-decoration: none;
       color: $LightBlue;
-      &:hover {
-        opacity: 0.6;
-      }
       & .favoriteIcon {
         padding-right: 5px;
       }
+      & .favoriteNumber{
+        font-size: 18px;
+        margin: auto 5px;
+      }
+    }
+    & #favoriteBtn:hover{
+      opacity: 0.8;
     }
     & .reportBtn {
       padding: 8px 10px;
@@ -714,6 +720,7 @@ footer {
     }
   }
 }
+
 
 .editorBox {
   background-color: #fff;

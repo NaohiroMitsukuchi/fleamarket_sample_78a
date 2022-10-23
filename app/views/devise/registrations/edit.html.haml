@@ -31,6 +31,7 @@
                   %span.required 必須
               %dd.FormItem__detail
                 = f.password_field :password, autocomplete: "new-password", placeholder: '半角英数字'
+                .caution  注) 変更しない場合は現在のパスワードを記入
           .FormItem
             %dl
               %dt.FormItem__label
@@ -38,6 +39,7 @@
                 %span.required 必須
               %dd.FormItem__detail
                 = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '半角英数字'
+                .caution  注) 変更しない場合は現在のパスワードを記入
           .FormItem
             %dl
               %dt.FormItem__label

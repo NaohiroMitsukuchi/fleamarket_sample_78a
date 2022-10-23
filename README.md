@@ -12,6 +12,7 @@
 - has_one :profile, dependent: :destroy
 - has_one :destination, dependent: :destroy
 - has_one :credit_card, dependent: :destroy
+- has_many :favorites, dependent: :destroy
 
 ## profilesテーブル
 |Column|Type|Options|
@@ -51,6 +52,15 @@
 ### Association
 - belongs_to :user
 
+## favoritesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
+### Association
+- belongs_to :item
+- belongs_to :user
+
 ## itemsテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -76,7 +86,7 @@
 - belongs_to_active_hash :preparation_day
 - belongs_to_active_hash :status
 - belongs_to :user
-
+- has_many :favorites, dependent: :destroy
 
 ## item_imagesテーブル
 |Column|Type|Options|
@@ -121,5 +131,3 @@
 |name|string|null: false|
 ### Association
 - has_many :items
-
-
